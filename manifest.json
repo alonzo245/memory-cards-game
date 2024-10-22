@@ -1,5 +1,5 @@
 {
-  "short_name": "React App",
+  "short_name": "memory cards game",
   "name": "Create React App Sample",
   "icons": [
     {
@@ -19,7 +19,7 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
+  "display": "browser",
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
