@@ -37,6 +37,8 @@ const ImageUploader = () => {
 
       // Read the image file as Base64
       reader.readAsDataURL(file);
+      window.location.reload();
+      setTimeout(() => {}, 1000);
     });
   };
 
@@ -48,6 +50,14 @@ const ImageUploader = () => {
         onChange={handleImageUpload}
         style={{ width: "90vw" }}
       />
+      <button
+        onClick={() => {
+          localStorage.clear();
+          window.location.reload();
+        }}
+      >
+        clear images
+      </button>
       <div style={{ display: "flex", flexWrap: "wrap", margin: "0 auto" }}>
         {/* Display uploaded images */}
         {images
