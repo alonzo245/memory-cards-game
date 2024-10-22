@@ -41,36 +41,39 @@ const ImageUploader = () => {
   };
 
   return (
-    <div>
-      <h1>Image Uploader</h1>
-
-      {/* File input to upload images */}
-      <input type="file" multiple onChange={handleImageUpload} />
-
-      <h2>Uploaded Images</h2>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div style={{ width: "90%", overflow: "hidden", margin: "0 auto" }}>
+      <input
+        type="file"
+        multiple
+        onChange={handleImageUpload}
+        style={{ width: "90vw" }}
+      />
+      <div style={{ display: "flex", flexWrap: "wrap", margin: "0 auto" }}>
         {/* Display uploaded images */}
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image.data}
-            alt={image.name}
-            style={{ width: "100px", height: "100px", margin: "10px" }}
-          />
-        ))}
+        {images
+          .map((image, index) => (
+            <img
+              key={index}
+              src={image.data}
+              alt={image.name}
+              style={{ width: "90px", height: "90px", margin: "5px" }}
+            />
+          ))
+          .sort((a, b) => a.key - b.key)}
       </div>
 
-      <h2>Images from LocalStorage</h2>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", margin: "0 auto" }}>
         {/* Display images loaded from localStorage */}
-        {localImages.map((image, index) => (
-          <img
-            key={index}
-            src={image.data}
-            alt={image.name}
-            style={{ width: "100px", height: "100px", margin: "10px" }}
-          />
-        ))}
+        {localImages
+          .map((image, index) => (
+            <img
+              key={index}
+              src={image.data}
+              alt={image.name}
+              style={{ width: "30%", height: "90px", margin: "5px" }}
+            />
+          ))
+          .sort((a, b) => a.key - b.key)}
       </div>
     </div>
   );
@@ -164,15 +167,33 @@ const MemoryGame = ({ images }) => {
   );
 };
 
-// App component
 const App = () => {
-  // Array of image URLs
-  const images = Array.from({ length: 46 }, (_, i) => `/images/${i + 1}.png`);
+  const [localImages, setLocalImages] = useState([]);
+
+  // const images = Array.from({ length: 46 }, (_, i) => `/images/${i + 1}.png`);
+  const images = localImages.map((image, index) => image.data);
+
+  useEffect(() => {
+    const storedImages = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const base64String = localStorage.getItem(key);
+      storedImages.push({
+        key: +key.substring(0, key.lastIndexOf(".")),
+        name: key,
+        data: base64String,
+      });
+    }
+    const sorted = [...storedImages].sort((a, b) => a.key - b.key);
+    console.log(sorted);
+
+    setLocalImages(sorted);
+  }, []);
 
   return (
     <div className="App">
-      <ImageUploader />
       <MemoryGame images={images} />
+      <ImageUploader />
     </div>
   );
 };
