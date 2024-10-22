@@ -1,0 +1,100 @@
+/* General styles for dark mode */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 24px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* Memory game container */
+.memory-game {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 20px; */
+  /* border-radius: 10px; */
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  /* width: 90%; */
+  /* max-width: 400px; */
+  margin: 0 auto;
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+}
+
+/* Responsive card container */
+.card {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  height: 330px;
+}
+
+.card img {
+  width: 90vw;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card-back {
+  width: 90vw;
+  height: 330px;
+  background-color: #333;
+  border-radius: 8px;
+}
+
+.buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 50%;
+}
+
+button:hover {
+}
+
+/* Score text */
+p {
+  font-size: 18px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.card {
+  width: fit-content;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttons button {
+  width: 50%;
+}
